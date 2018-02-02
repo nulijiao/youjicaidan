@@ -2,9 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>es5常见遍历方法总结</title>
 </head>
 <body>
+<script>
+  function d(item) {
+    console.log(item);
+  }
+  var a=[1,4,7,12,90,32];
+  //    foreach里面不可以有break,利用return结束
+  a.forEach(function(item,index){
+    if(index==2){
+      console.log(item);
+      return;
+    }
 
+  })
+  //   break非法 some的时候return false表示继续遍历没有找到，return true表示没有找到继续
+  a.some(function(item){
+    console.log(item);
+    if(item>10){
+      return true;
+    }
+    return false;
+
+  });
+  //  break非法  every的时候return true表示继续遍历没有找到，return false表示找到结束
+  a.every(function (item) {
+    console.log(item);
+    if(item>10){
+
+      return false;
+    }
+    return true;
+  });
+  //d自动执行会执行时候会自动执行相当于，这个方法很巧妙写代码时候要用到
+  /*  a.every(function d(item) {
+        console.log(item);
+
+    });在执行some时候调用，参数是function也是js的特别之处*/
+  a.some(d);
+  //for in可以使用break
+  for(var i in a){
+    console.log(a[i]);
+    if(i==1) {
+      break;
+    }
+  }
+
+</script>
 </body>
 </html>
